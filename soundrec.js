@@ -3,6 +3,7 @@ window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogn
 
 const recognition = new SpeechRecognition();
 recognition.interimResults = true;
+recognition.lang = "en-US";
 
 let p = document.createElement("p");
 const words = document.querySelector(".words");
@@ -16,7 +17,7 @@ recognition.addEventListener("result", e =>{
     .join("");
 
     p.textContent = transcript;
-    if (e.result[0].isFinal){
+    if (e.results[0].isFinal){
         p = document.createElement("p");
         words.appendChild(p);
     }
@@ -24,3 +25,4 @@ recognition.addEventListener("result", e =>{
 })
 
 recognition.addEventListener("end",recognition.start);
+recognition.start();
